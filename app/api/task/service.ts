@@ -32,7 +32,7 @@ export const get = async (filter?: TaskFilter): Promise<{ data: Task[] }> => {
     setTimeout(
       () =>
         resolve({
-          data,
+          data: data ?? [],
         }),
       500
     );
@@ -66,11 +66,11 @@ export const create = async (task: Task): Promise<{ data: Task }> => {
     updatedAt: +new Date(),
   };
 
-  const data = currentTasks.length
+  const data = currentTasks?.length
     ? [...currentTasks, enrichData]
     : [enrichData];
 
-  set(data);
+  set(data ?? []);
 
   return new Promise(function (resolve) {
     setTimeout(() => resolve({ data: enrichData }), 500);
@@ -83,7 +83,7 @@ export const remove = async (
   const { get, set } = LocalStorage(LOCAL_STORAGE_KEY);
   const currentTasks: Task[] = get();
 
-  set(currentTasks.filter((item) => item.id !== taskId));
+  set(currentTasks?.filter((item) => item.id !== taskId) ?? []);
 
   return new Promise(function (resolve) {
     setTimeout(() => resolve({ data: { id: taskId } }), 500);
@@ -99,11 +99,11 @@ export const update = async (task: Task): Promise<{ data: Task }> => {
     updatedAt: +new Date(),
   };
 
-  const data = currentTasks.map((item) =>
+  const data = currentTasks?.map((item) =>
     item.id === enrichData.id ? enrichData : item
   );
 
-  set(data);
+  set(data ?? []);
 
   return new Promise(function (resolve) {
     setTimeout(() => resolve({ data: enrichData }), 500);

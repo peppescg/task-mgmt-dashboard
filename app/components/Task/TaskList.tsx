@@ -31,7 +31,7 @@ export const TaskList = () => {
   const onHandleEdit = (task: Task) => edit(task);
 
   if (status === "loading" || status === "editing") return <Spinner />;
-  if (!list.length && status === "idle") return null;
+  if (!list?.length && status === "idle") return null;
 
   return (
     <Grid

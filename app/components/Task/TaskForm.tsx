@@ -6,6 +6,7 @@ import { Task } from "@/lib/redux";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { TaskFields } from "./TaskFields";
 import { Actions } from "./Actions";
+import dayjs from "dayjs";
 
 const ActionsBox = styled(Box)`
   display: flex;
@@ -25,7 +26,7 @@ interface TaskProps extends Omit<Task, "title"> {
 export const TaskForm = ({
   title = "",
   description,
-  dueDate,
+  dueDate = dayjs().valueOf(),
   id,
   pinned,
   done,
