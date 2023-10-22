@@ -1,10 +1,10 @@
 /* Components */
-import { Counter } from './components/Counter/Counter'
+import { Dashboard } from "./components/Dashboard";
 
 export default function IndexPage() {
-  return <Counter />
+  return <Dashboard />;
 }
 
 export const metadata = {
-  title: 'Redux Toolkit',
-}
+  title: "Task Management Dashboard",
+};
