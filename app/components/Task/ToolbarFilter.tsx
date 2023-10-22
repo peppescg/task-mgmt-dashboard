@@ -7,7 +7,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import { useFilter } from "@/app/hooks/useFilter";
 import { Tooltip } from "@mui/material";
 
-export const ToolbarTask = () => {
+export const ToolbarFilter = () => {
   const { pinned, todo, sortByAsc, done, setFilter } = useFilter();
 
   return (
@@ -38,7 +38,7 @@ export const ToolbarTask = () => {
         sx={{
           "&:hover": {
             background: (theme) => theme.palette.success.main,
-            color: "#fff",
+            color: "common.white",
           },
         }}
         onChange={() => setFilter((pre) => ({ ...pre, done: !done }))}
@@ -52,7 +52,7 @@ export const ToolbarTask = () => {
         color="primary"
         sx={{
           "&:hover": {
-            color: "#fff",
+            color: "common.white",
             background: (theme) => theme.palette.primary.main,
           },
         }}

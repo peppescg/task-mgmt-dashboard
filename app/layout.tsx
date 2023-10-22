@@ -5,6 +5,7 @@ import { Nav } from "./components/Nav";
 /* Instruments */
 import styles from "./styles/layout.module.css";
 import "./styles/globals.css";
+import { FooterBar } from "./components/FooterBar";
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
@@ -19,7 +20,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
             <main className={styles.main}>{props.children}</main>
 
             <footer className={styles.footer}>
-              <span>Credits Giuseppe Scuglia</span>
+              <FooterBar />
             </footer>
           </section>
         </body>

@@ -25,7 +25,4 @@
 
 .footer {
   grid-area: footer;
-  justify-self: flex-start;
-  font-size: small;
-  margin-left: 8px;
 }

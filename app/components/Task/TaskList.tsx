@@ -16,24 +16,6 @@ const styles = {
   },
 };
 
-const EmptyTasks = () => {
-  return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      width="100%"
-      gap={4}
-      color="text.secondary"
-      position="relative"
-    >
-      <TaskIcon style={styles.largeIcon} />
-      <Typography variant="h2" component="h3">
-        Please add a task
-      </Typography>
-    </Box>
-  );
-};
-
 export const TaskList = () => {
   const { getTasks, remove, edit, status, list } = useTask();
   const router = useRouter();
@@ -49,7 +31,7 @@ export const TaskList = () => {
   const onHandleEdit = (task: Task) => edit(task);
 
   if (status === "loading" || status === "editing") return <Spinner />;
-  // if (!list.length) return <EmptyTasks />;
+  if (!list.length && status === "idle") return null;
 
   return (
     <Grid

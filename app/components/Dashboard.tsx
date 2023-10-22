@@ -9,7 +9,7 @@ import { Divider, Grid } from "@mui/material";
 import { TaskList } from "./Task/TaskList";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import Button from "@mui/material/Button";
-import { ToolbarTask } from "./Task/ToolbarTask";
+import { ToolbarFilter } from "./Task/ToolbarFilter";
 import { Modal } from "./Modal";
 import { TaskForm } from "./Task/TaskForm";
 import styled from "@emotion/styled";
@@ -45,7 +45,7 @@ export const Dashboard = () => {
           >
             ADD TASK
           </Button>
-          <ToolbarTask />
+          <ToolbarFilter />
         </Grid>
         <Divider variant="fullWidth" sx={{ my: 2, width: "100%" }} />
         <TaskList />
