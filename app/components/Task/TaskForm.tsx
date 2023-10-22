@@ -42,10 +42,8 @@ export const TaskForm = ({
         return { title: "Field required" };
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          onSubmit(values);
-          setSubmitting(false);
-        }, 400);
+        onSubmit(values);
+        setSubmitting(false);
       }}
     >
       {(formikProps: FormikProps<Task>) => (
@@ -69,9 +67,11 @@ export const TaskForm = ({
             <Box gap={2} display="flex">
               <LoadingButton
                 size="small"
+                id="submit"
                 loading={formikProps.isSubmitting}
                 variant="contained"
                 type="submit"
+                data-testid="submit"
               >
                 {id ? "Edit task" : "Create task"}
               </LoadingButton>

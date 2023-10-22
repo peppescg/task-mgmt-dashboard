@@ -69,7 +69,11 @@ export const TaskPreview = ({
     >
       <CardContentOverride>
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography fontSize="large" color="text.primary">
+          <Typography
+            fontSize="large"
+            color="text.primary"
+            data-testid="task-title"
+          >
             {title}
           </Typography>
           <CardActionsOverride disableSpacing>
@@ -84,6 +88,7 @@ export const TaskPreview = ({
 
             <Tooltip title="Delete">
               <IconButton
+                data-testid="delete-task"
                 sx={{
                   "&:hover": { color: (theme) => theme.palette.error.main },
                 }}

@@ -31,6 +31,7 @@ export const Actions = ({ done, pinned, setDone, setPinned }: ActionsProps) => {
 
       <Tooltip title="Done">
         <IconButton
+          data-testid="done-task"
           sx={{
             "&:hover": { color: (theme) => theme.palette.success.main },
             ...(done && {

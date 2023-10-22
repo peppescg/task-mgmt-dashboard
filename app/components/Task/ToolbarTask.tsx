@@ -24,6 +24,7 @@ export const ToolbarTask = () => {
 
       <ToggleButton
         value="check"
+        data-testid="todo-toggle"
         selected={todo}
         onChange={() => setFilter((pre) => ({ ...pre, todo: !todo }))}
       >
@@ -32,6 +33,7 @@ export const ToolbarTask = () => {
       <ToggleButton
         value="check"
         color="success"
+        data-testid="done-toggle"
         selected={done}
         sx={{
           "&:hover": {
@@ -46,6 +48,7 @@ export const ToolbarTask = () => {
       <ToggleButton
         value="check"
         selected={pinned}
+        data-testid="pinned-toggle"
         color="primary"
         sx={{
           "&:hover": {
@@ -61,6 +64,7 @@ export const ToolbarTask = () => {
       <Tooltip title="Sort by due date asc/desc">
         <ToggleButton
           value="sort"
+          data-testid="sort-toggle"
           aria-label="sort"
           onClick={() =>
             setFilter((pre) => ({ ...pre, sortByAsc: !sortByAsc }))

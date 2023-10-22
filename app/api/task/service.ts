@@ -11,7 +11,9 @@ export const get = async (filter?: TaskFilter): Promise<{ data: Task[] }> => {
   const data = filter
     ? currentTasks
         .filter((item) =>
-          filter?.search ? item.title.includes(filter.search) : true
+          filter?.search
+            ? item.title.toLowerCase().includes(filter.search.toLowerCase())
+            : true
         )
         .filter((item) => (filter.done ? item.done : true))
         .filter((item) => (filter.todo ? !item.done : true))

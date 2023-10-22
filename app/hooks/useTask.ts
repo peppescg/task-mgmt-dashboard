@@ -17,7 +17,8 @@ export const useTask = () => {
   const dispatch = useDispatch();
   const { list, task, status } = useSelector(selectTask);
 
-  const onHandleGetTasks = (filter?: TaskFilter| undefined) => dispatch(getTasks(filter));
+  const onHandleGetTasks = (filter?: TaskFilter | undefined) =>
+    dispatch(getTasks(filter));
 
   const onHandleEdit = (data: Task) => dispatch(editTask(data));
 
