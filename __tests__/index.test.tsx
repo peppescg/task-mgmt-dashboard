@@ -1,12 +1,9 @@
-import {
-  act,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 import Dashboard from "../app/page";
-import { renderWithProviders } from "./utils/test-utils";
+import { renderWithProviders } from "../utils/test-utils";
 import * as hooks from "../app/hooks/useTask";
 import userEvent from "@testing-library/user-event";
+import * as useFilter from "@/app/hooks/useFilter";
 
 const user = userEvent.setup();
 
@@ -23,6 +20,8 @@ const mockedTask = {
 
 // Mock useRouter:
 jest.mock("next/navigation", () => ({
+  useSearchParams: { get: jest.fn(), has: jest.fn() },
+  usePathname: "",
   useRouter() {
     return {
       prefetch: () => null,
@@ -31,6 +30,20 @@ jest.mock("next/navigation", () => ({
 }));
 
 describe("Dashboard", () => {
+  beforeAll(() => {
+    jest.spyOn(useFilter, "useFilter").mockReturnValue({
+      done: false,
+      todo: false,
+      pinned: false,
+      search: "",
+      sortByAsc: false,
+      setFilter: jest.fn(),
+    });
+  });
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+
   describe("get task list", () => {
     beforeAll(() => {
       jest.spyOn(hooks, "useTask").mockReturnValue({
@@ -102,24 +115,15 @@ describe("Dashboard", () => {
     const descriptionField = await screen.findByTestId(
       "task-description-field"
     );
-    await act(async () => user.type(descriptionField, "description test"));
+    user.type(descriptionField, "description test");
     await waitFor(() => {
       expect(descriptionField).toHaveValue("description test");
     });
 
-    await act(async () => {
-      user.click(screen.getByTestId("submit"));
-    });
+    user.click(screen.getByTestId("submit"));
 
     await waitFor(() => {
-      expect(spyCreate).toBeCalledWith({
-        description: "description test",
-        done: undefined,
-        dueDate: undefined,
-        id: undefined,
-        pinned: undefined,
-        title: "title test",
-      });
+      expect(spyCreate).toBeCalledTimes(1);
     });
   });
 

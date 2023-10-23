@@ -43,7 +43,7 @@ const getChipColor = (
 ) => {
   if (done) return "success";
   if (pinned) return "primary";
-  return 'default'
+  return "default";
 };
 
 export const TaskPreview = ({
@@ -79,13 +79,11 @@ export const TaskPreview = ({
     >
       <CardContentOverride>
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography
-            fontSize="large"
-            color="text.primary"
+          <Chip
+            label={title}
+            color={getChipColor(done, pinned)}
             data-testid="task-title"
-          >
-            <Chip label={title} color={getChipColor(done, pinned)} />
-          </Typography>
+          />
           <CardActionsOverride disableSpacing>
             <Actions
               pinned={pinned ?? false}
