@@ -14,7 +14,7 @@ export const ToolbarFilter = () => {
   const { pinned, todo, sortByAsc, done, search, setFilter } = useFilter();
 
   const handleClearSearch = useCallback(() => {
-    if (search) setFilter((pre) => ({ ...pre, search: "" }));
+    setFilter((pre) => ({ ...pre, search: "" }));
   }, []);
 
   return (
@@ -24,7 +24,7 @@ export const ToolbarFilter = () => {
         label="Search by title..."
         variant="filled"
         fullWidth
-        defaultValue={search}
+        value={search}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -35,6 +35,7 @@ export const ToolbarFilter = () => {
             <InputAdornment position="end">
               <IconButton
                 type="button"
+                disabled={!search}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleClearSearch();
