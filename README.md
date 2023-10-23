@@ -3,7 +3,7 @@ App to create tasks in a clear dashboard.
 The app is organized into two routes, home, and edit.
 On the home page, you can see your tasks, and create a new one.
 
-
+App available in vercel https://task-mgmt-dashboard.vercel.app/
 
 ## Create task
 Every task has a `title`, a `description`, and a `due date`.
@@ -39,4 +39,7 @@ Make a build
 yarn build
 ```
 
-
+Run build
+```bash
+yarn start
+```
