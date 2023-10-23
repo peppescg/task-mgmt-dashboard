@@ -4,11 +4,18 @@ import Stack from "@mui/material/Stack";
 import ToggleButton from "@mui/material/ToggleButton";
 import TextField from "@mui/material/TextField";
 import SortIcon from "@mui/icons-material/Sort";
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
 import { useFilter } from "@/app/hooks/useFilter";
-import { Tooltip } from "@mui/material";
+import { IconButton, InputAdornment, Tooltip } from "@mui/material";
+import { useCallback } from "react";
 
 export const ToolbarFilter = () => {
-  const { pinned, todo, sortByAsc, done, setFilter } = useFilter();
+  const { pinned, todo, sortByAsc, done, search, setFilter } = useFilter();
+
+  const handleClearSearch = useCallback(() => {
+    if (search) setFilter((pre) => ({ ...pre, search: "" }));
+  }, []);
 
   return (
     <Stack direction="row" spacing={4} width="80%" alignItems="center">
@@ -17,6 +24,27 @@ export const ToolbarFilter = () => {
         label="Search by title..."
         variant="filled"
         fullWidth
+        defaultValue={search}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClearSearch();
+                }}
+              >
+                <ClearIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
         onChange={(e) =>
           setFilter((pre) => ({ ...pre, search: e.target.value ?? "" }))
         }

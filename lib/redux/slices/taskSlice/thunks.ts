@@ -4,7 +4,7 @@ import { create, get, getById, remove, update } from "@/app/api/task/service";
 
 export const getTasks = createAppAsyncThunk(
   "task/get",
-  async (filter?: TaskFilter| undefined) => {
+  async (filter?: TaskFilter | undefined) => {
     const response = await get(filter);
 
     return response.data;

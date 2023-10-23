@@ -1,28 +1,15 @@
 "use client";
 
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { TaskPreview } from "./TaskPreview";
 import { useRouter } from "next/navigation";
-import TaskIcon from "@mui/icons-material/Task";
 import { Task } from "@/lib/redux";
-import { useEffect } from "react";
 import { Spinner } from "../Spinner";
 import { useTask } from "@/app/hooks/useTask";
 
-const styles = {
-  largeIcon: {
-    width: 60,
-    height: 60,
-  },
-};
-
 export const TaskList = () => {
-  const { getTasks, remove, edit, status, list } = useTask();
+  const { remove, edit, status, list } = useTask();
   const router = useRouter();
-
-  useEffect(() => {
-    getTasks();
-  }, []);
 
   const onHandleDelete = (id: string) => {
     remove(id);

@@ -3,11 +3,10 @@ import { LocalStorage } from "./LocalStorage";
 import { Task, TaskFilter } from "@/lib/redux";
 
 const LOCAL_STORAGE_KEY = "task-dashboard";
+const { get: getFromLS, set } = LocalStorage(LOCAL_STORAGE_KEY);
 
 export const get = async (filter?: TaskFilter): Promise<{ data: Task[] }> => {
-  const { get } = LocalStorage("task-dashboard");
-  const currentTasks: Task[] = get();
-
+  const currentTasks: Task[] = getFromLS();
   const data = filter
     ? currentTasks
         .filter((item) =>
@@ -42,8 +41,7 @@ export const get = async (filter?: TaskFilter): Promise<{ data: Task[] }> => {
 export const getById = async (
   id: string
 ): Promise<{ data: Task | undefined }> => {
-  const { get } = LocalStorage("task-dashboard");
-  const currentTasks: Task[] = get();
+  const currentTasks: Task[] = getFromLS();
 
   return new Promise(function (resolve) {
     setTimeout(
@@ -57,8 +55,7 @@ export const getById = async (
 };
 
 export const create = async (task: Task): Promise<{ data: Task }> => {
-  const { get, set } = LocalStorage(LOCAL_STORAGE_KEY);
-  const currentTasks: Task[] = get();
+  const currentTasks: Task[] = getFromLS();
   const enrichData: Task = {
     ...task,
     id: nanoid(),
@@ -80,8 +77,7 @@ export const create = async (task: Task): Promise<{ data: Task }> => {
 export const remove = async (
   taskId: string
 ): Promise<{ data: { id: string } }> => {
-  const { get, set } = LocalStorage(LOCAL_STORAGE_KEY);
-  const currentTasks: Task[] = get();
+  const currentTasks: Task[] = getFromLS();
 
   set(currentTasks?.filter((item) => item.id !== taskId) ?? []);
 
@@ -91,8 +87,7 @@ export const remove = async (
 };
 
 export const update = async (task: Task): Promise<{ data: Task }> => {
-  const { get, set } = LocalStorage(LOCAL_STORAGE_KEY);
-  const currentTasks: Task[] = get();
+  const currentTasks: Task[] = getFromLS();
 
   const enrichData: Task = {
     ...task,
