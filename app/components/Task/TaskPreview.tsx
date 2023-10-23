@@ -5,6 +5,7 @@ import {
   CardActions,
   IconButton,
   Tooltip,
+  Chip,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -35,6 +36,15 @@ height: 100%;
 const CardActionsOverride = styled(CardActions)`
   padding: 0;
 `;
+
+const getChipColor = (
+  done: boolean | undefined,
+  pinned: boolean | undefined
+) => {
+  if (done) return "success";
+  if (pinned) return "primary";
+  return 'default'
+};
 
 export const TaskPreview = ({
   title = "Title",
@@ -74,7 +84,7 @@ export const TaskPreview = ({
             color="text.primary"
             data-testid="task-title"
           >
-            {title}
+            <Chip label={title} color={getChipColor(done, pinned)} />
           </Typography>
           <CardActionsOverride disableSpacing>
             <Actions
