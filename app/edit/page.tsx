@@ -6,8 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { TaskForm } from "../components/Task/TaskForm";
 import { Spinner } from "../components/Spinner";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { Box, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { useTask } from "../hooks/useTask";
+import Link from "next/link";
 
 export default function EditPage() {
   const { task, getTaskById, remove, edit, status } = useTask();
@@ -33,6 +34,14 @@ export default function EditPage() {
 
   return (
     <Box width="50%">
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link color="inherit" href="/">
+          HOME
+        </Link>
+
+        <Typography color="text.primary">{task.title}</Typography>
+      </Breadcrumbs>
+
       <Typography
         variant="h4"
         component="div"
