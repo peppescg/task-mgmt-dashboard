@@ -19,6 +19,7 @@ const Form = styled("form")`
 
 interface TaskProps extends Omit<Task, "title"> {
   title?: string;
+  status: string;
   onSubmit: (task: Task) => void;
   onHandleSecondaryBtn: (taskId: string) => void;
 }
@@ -30,9 +31,11 @@ export const TaskForm = ({
   id,
   pinned,
   done,
+  status,
   onSubmit,
   onHandleSecondaryBtn,
 }: TaskProps) => {
+  const isSubmitting = status === "editing";
   return (
     <Formik
       initialValues={{ id, title, description, dueDate, pinned, done }}
@@ -42,14 +45,13 @@ export const TaskForm = ({
         if (values.title) return {};
         return { title: "Field required" };
       }}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values) => {
         onSubmit(values);
-        setSubmitting(false);
       }}
     >
       {(formikProps: FormikProps<Task>) => (
         <Form onSubmit={formikProps.handleSubmit}>
-          <TaskFields {...formikProps} />
+          <TaskFields {...formikProps} isSubmitting={isSubmitting} />
           <Divider variant="fullWidth" light sx={{ my: 4 }} />
           <ActionsBox>
             <Box>
@@ -69,7 +71,7 @@ export const TaskForm = ({
               <LoadingButton
                 size="small"
                 id="submit"
-                loading={formikProps.isSubmitting}
+                loading={isSubmitting}
                 variant="contained"
                 type="submit"
                 data-testid="submit"

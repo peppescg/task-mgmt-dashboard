@@ -29,26 +29,26 @@ export const useFilter = () => {
     search,
   });
 
-  const updateSearchParams = useCallback(() => {
+  const updateSearchParams = useCallback((filterParams: FilterProps) => {
     const params = new URLSearchParams();
-    Object.entries(filter).forEach(([key, value]) => {
+    Object.entries(filterParams).forEach(([key, value]) => {
       value ? params.set(key, String(value)) : params.delete(key);
     });
     const url = pathname + "?" + params.toString();
     router.push(url);
-  }, [filter]);
+  }, []);
 
-  const handleChange = () => {
-    updateSearchParams();
-    getTasks(filter);
+  const handleChange = (filterParams: FilterProps) => {
+    updateSearchParams(filterParams);
+    getTasks(filterParams);
   };
 
   const onDebouncedResults = useMemo(() => {
-    return debounce(handleChange, 300);
-  }, [filter]);
+    return debounce(handleChange, 400);
+  }, []);
 
   useEffect(() => {
-    onDebouncedResults();
+    onDebouncedResults(filter);
   }, [filter]);
 
   return {

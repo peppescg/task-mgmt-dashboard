@@ -48,6 +48,7 @@ export default function EditPage() {
       {task && (
         <TaskForm
           {...task}
+          status={status}
           onSubmit={onHandleSubmit}
           onHandleSecondaryBtn={onHandleSecondaryBtn}
         />
