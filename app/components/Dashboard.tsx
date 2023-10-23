@@ -21,13 +21,14 @@ const DashboardWrapper = styled("div")`
 `;
 
 export const Dashboard = () => {
-  const { add } = useTask();
+  const { add, status } = useTask();
   const [open, setOpen] = useState(false);
 
   return (
     <DashboardWrapper>
       <Modal setOpen={setOpen} isOpen={open} title="Create a task">
         <TaskForm
+          status={status}
           onHandleSecondaryBtn={() => setOpen(false)}
           onSubmit={(task: Task) => {
             setOpen(false);
