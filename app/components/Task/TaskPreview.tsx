@@ -125,7 +125,7 @@ export const TaskPreview = ({
           height={20}
         >
           <CalendarMonthIcon color="primary" fontSize="small" />
-          <Typography fontSize="small" color="text.secondary">
+          <Typography fontSize="small" color="text.secondary" data-testid="due-date-task">
             {dayjs(dueDate).format("MM/DD/YYYY")}
           </Typography>
         </Box>

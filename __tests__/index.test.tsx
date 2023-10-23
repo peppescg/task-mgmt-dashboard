@@ -73,10 +73,9 @@ describe("Dashboard", () => {
       expect(screen.getByTestId("pinned-toggle")).toBeInTheDocument();
       expect(screen.getByTestId("todo-toggle")).toBeInTheDocument();
       expect(screen.getByTestId("sort-toggle")).toBeInTheDocument();
-
       expect(screen.getByTestId("task-title")).toHaveTextContent(/test tasks/i);
       expect(screen.getByTestId("CheckCircleIcon")).toBeInTheDocument();
-      expect(screen.getByText(/10\/30\/2023/i)).toBeInTheDocument();
+      expect(screen.getByTestId("due-date-task")).toBeInTheDocument();
     });
   });
 

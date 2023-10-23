@@ -1,29 +1,42 @@
-# Redux Toolkit TypeScript Example
+# Task management dashboard 
+App to create tasks in a clear dashboard.
+The app is organized into two routes, home, and edit.
+On the home page, you can see your tasks, and create a new one.
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
 
-The **Redux Toolkit** is a standardized way to write Redux logic (create actions and reducers, setup the store with some default middlewares like redux devtools extension). This example demonstrates each of these features with Next.js
 
-## Deploy your own
+## Create task
+Every task has a `title`, a `description`, and a `due date`.
+Is it possible also to set a task `pinned`, `done`, or delete it.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+![Kapture 2023-10-23 at 19 09 09](https://github.com/peppescg/task-mgmt-dashboard/assets/6888137/fb66652a-42b0-400d-a1b8-9483677ecd4d)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+## Filter task
+The filter toolbar works filtering by title, done, todo, pinned task, and sort it. All the filters are synced into the URL, so if the page is refreshed, the filters will be applied to the app.
+
+![Kapture 2023-10-23 at 19 14 19](https://github.com/peppescg/task-mgmt-dashboard/assets/6888137/5ac2cfff-9d1d-4260-aa8b-b2026d39005d)
+
+## Edit task
+Click on a task you arrive at the Edit page, where you can edit `title`, `description`, or `due date` and set the status of your task, or delete the task.
+
+![Kapture 2023-10-23 at 19 15 43](https://github.com/peppescg/task-mgmt-dashboard/assets/6888137/451173a8-0548-4341-b143-c62c9bd26832)
+
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
+Run app
 ```bash
-npx create-next-app --example with-redux with-redux-app
+yarn dev 
 ```
 
+Run test
 ```bash
-yarn create next-app --example with-redux with-redux-app
+yarn test
 ```
 
+Make a build
 ```bash
-pnpm create next-app --example with-redux with-redux-app
+yarn build
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
