@@ -43,3 +43,6 @@ Run build
 ```bash
 yarn start
 ```
+
+test
+DB_PASSWORD=12334
