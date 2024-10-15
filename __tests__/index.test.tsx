@@ -9,7 +9,7 @@ const user = userEvent.setup();
 
 const mockedTask = {
   title: "Test tasks",
-  description: "description test",
+  description: "description test 2",
   dueDate: 1698620400000,
   id: "aQmtq6HZusEoZvKhzSM_r",
   createdAt: 1697915659717,
@@ -114,9 +114,9 @@ describe("Dashboard", () => {
     const descriptionField = await screen.findByTestId(
       "task-description-field"
     );
-    user.type(descriptionField, "description test");
+    user.type(descriptionField, "description test 2");
     await waitFor(() => {
-      expect(descriptionField).toHaveValue("description test");
+      expect(descriptionField).toHaveValue("description test 2");
     });
 
     user.click(screen.getByTestId("submit"));
