@@ -1,0 +1,33 @@
+name: Coveralls
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests and generate coverage
+      run: npm test -- --coverage --coverageReporters="text-lcov"
+      
+    - name: Send coverage to Coveralls
+      uses: coverallsapp/github-action@1134c89e4bf10443bf8f0ec69640b667cfd91041
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        coveralls-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        path-to-lcov: ./coverage/lcov.info
