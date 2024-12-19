@@ -7,7 +7,7 @@ repos:
     -   id: check-yaml
     -   id: check-added-large-files
         args: ['--maxkb=600']
--   repo: https://github.com/thoughtworks/talismanTEST
+-   repo: https://github.com/thoughtworks/talisman
     rev: 'v1.28.0'  # Update me!
     hooks:
       # both pre-commit and pre-push supported
