@@ -13,4 +13,4 @@ repos:
       # both pre-commit and pre-push supported
       # -   id: talisman-push
       - id: talisman-commit
-        entry: cmd --githook pre-commit
+        entry: cmd --githook pre-committ
