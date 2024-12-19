@@ -12,5 +12,5 @@ repos:
     hooks:
       # both pre-commit and pre-push supported
       # -   id: talisman-push
-      - id: talisman-commit2
+      - id: talisman-commit
         entry: cmd --githook pre-commit
