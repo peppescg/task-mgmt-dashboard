@@ -17,4 +17,4 @@ repos:
 -   repo: https://github.com/semgrep/pre-commit
     rev: 'v1.101.0'
     hooks:
-      - id: semgrep-ci
+      - id: semgrep
